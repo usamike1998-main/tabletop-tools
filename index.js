@@ -170,5 +170,12 @@ function canSee(light, vision) {
  * @returns {number} damage dealt by the strike
  */
 function getStrikeDamage(attack, ac, damage) {
+  switch(true){
+    case attack < ac : return 0;
+    case attack === ac : return damage;
+
+
+    case 
+  }
   // TODO
 }
