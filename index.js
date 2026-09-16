@@ -127,6 +127,14 @@ function getCoverBonus(behindObstacle, takingCover) {
  */
 function getRemainingHp(maxHp, currentHp, damage) {
   // TODO
+  switch (true) {
+    case damage >= maxHp * 2:
+      return -1;
+    case currentHp - damage <= 0:
+      return 0;
+    default:
+      return currentHp - damage;
+  }
 }
 
 /**
