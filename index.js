@@ -79,7 +79,7 @@ function heal(maxHp, currentHp, healAmount) {
 function getProficiencyBonus(level, rank) {
   switch (rank) {
     case "untrained":
-      return level;
+      return 0;
     case "trained":
       return level + 2;
     case "expert":
