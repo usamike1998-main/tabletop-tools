@@ -30,7 +30,7 @@ function isHidden(hiding, aware) {
  * @returns {boolean} whether the strike hits
  */
 function doesStrikeHit(attack, ac) {
-  return attack > ac;
+  return attack >= ac;
   // TODO
 }
 
@@ -170,12 +170,13 @@ function canSee(light, vision) {
  * @returns {number} damage dealt by the strike
  */
 function getStrikeDamage(attack, ac, damage) {
-  switch(true){
-    case attack < ac : return 0;
-    case attack === ac : return damage;
-
-
-    case 
+  switch (true) {
+    case !doesStrikeHit(attack, ac):
+      return 0;
+    case doesStrikeCrit(attack, ac):
+      return damage * 2;
+    default:
+      return damage;
   }
   // TODO
 }
