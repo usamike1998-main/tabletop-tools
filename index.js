@@ -6,6 +6,7 @@
  * @returns {boolean} whether the wizard can cast the spell
  */
 function canCastSpell(isSpellPrepared, hasScroll) {
+  return isSpellPrepared || hasScroll;
   // TODO
 }
 
@@ -17,6 +18,7 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  * @returns {boolean} whether the creature is hidden from the observer
  */
 function isHidden(hiding, aware) {
+  return hiding || !aware;
   // TODO
 }
 
@@ -28,6 +30,7 @@ function isHidden(hiding, aware) {
  * @returns {boolean} whether the strike hits
  */
 function doesStrikeHit(attack, ac) {
+  return attack > ac;
   // TODO
 }
 
@@ -39,6 +42,7 @@ function doesStrikeHit(attack, ac) {
  * @returns {boolean} whether the strike is a critical hit
  */
 function doesStrikeCrit(attack, ac) {
+  return attack - 10 >= ac;
   // TODO
 }
 
@@ -51,6 +55,8 @@ function doesStrikeCrit(attack, ac) {
  * @returns {number} total hit points after healing
  */
 function heal(maxHp, currentHp, healAmount) {
+  return maxHp > currentHp + healAmount ? currentHp + healAmount : maxHp;
+  //return Math.min(maxHp, currentHp + healAmount);
   // TODO
 }
 
@@ -71,6 +77,18 @@ function heal(maxHp, currentHp, healAmount) {
  * @returns {number} the character's proficiency bonus
  */
 function getProficiencyBonus(level, rank) {
+  switch (rank) {
+    case "untrained":
+      return level;
+    case "trained":
+      return level + 2;
+    case "expert":
+      return level + 4;
+    case "master":
+      return level + 6;
+    case "legendary":
+      return level + 8;
+  }
   // TODO
 }
 
@@ -85,7 +103,14 @@ function getProficiencyBonus(level, rank) {
  * @returns {number} the cover bonus to AC
  */
 function getCoverBonus(behindObstacle, takingCover) {
-  // TODO
+  switch (true) {
+    case !behindObstacle:
+      return 0;
+    case takingCover:
+      return 4;
+    default:
+      return 2;
+  }
 }
 
 /**
